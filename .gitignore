@@ -1,0 +1,39 @@
+# ===========================================================================
+#  DEPOT DE DISTRIBUTION UNIQUEMENT
+#
+#  Ce depot ne publie QUE ce que l'utilisateur final doit recevoir :
+#      - le paquet Windows (via les Releases GitHub)
+#      - le manifeste de mise a jour (lu par l'application au demarrage)
+#      - la documentation et la licence
+#
+#  Aucun code source, script de compilation, notice technique ou fichier de
+#  build n'est versionne : le projet ne doit pas pouvoir etre reproduit ni
+#  recopie a partir de ce depot (cf. LICENSE, section 2).
+# ===========================================================================
+
+# ---- Tout est exclu par defaut (liste blanche) ----
+# Partir d'une base propre plutot que lister les exceptions : ajouter un jour
+# un fichier ne doit JAMAIS le faire fuiter par defaut.
+*
+
+# ---- Exceptions : les seuls fichiers publies ----
+!.gitignore
+!README.md
+!LICENSE
+!CHANGELOG.md
+!release/
+!release/manifest.json
+
+# ---- Locaux (rien de tout ca n'a vocation a etre publie) ----
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+*.pyd
+*.so
+*.c
+*.log
+.vscode/
+nuitka-crash-report.xml
