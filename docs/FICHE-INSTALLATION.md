@@ -26,8 +26,8 @@ Fiche technique du paquet (aussi dans [`release/manifest.json`](../release/manif
 | Valeur | Contenu |
 |---|---|
 | Version | 1.0.2 (canal `stable`) |
-| Taille | 57 274 608 octets |
-| SHA-256 | `51A690CD1A7F3A58D44262950EB313CEEAF4A3325115D9729C564F36CFE1A0DD` |
+| Taille | 57 273 952 octets |
+| SHA-256 | `D37DC8F360DB35D3242992E70C30A15E0A08D6F196D114E2B5FEF592D0392648` |
 
 ### Vérifier l'intégrité (facultatif)
 
@@ -80,7 +80,7 @@ ChapeMedia-v1.0.2-win64\
 
 Deux méthodes (détails dans la [fiche de dépannage](FICHE-DEPANNAGE.md) § 2) :
 
-- **Automatique** : bouton `© MANYFEST` → *Vérifier les mises à jour*.
+- **Automatique** : bouton `© Dane hk \Manifest` → *Vérifier les mises à jour*.
 - **Manuelle** : extraire la nouvelle archive à la place de l'ancienne version.
   Aucune donnée n'est perdue : seuls les fichiers du programme changent.
 

@@ -2,12 +2,12 @@
     "app":  "CHAPE-MEDIA",
     "version":  "1.0.2",
     "channel":  "stable",
-    "date":  "2026-10-01",
+    "date":  "2026-10-02",
     "package":  "ChapeMedia-v1.0.2-win64.zip",
     "url":  "https://raw.githubusercontent.com/Kraftdanilo/Chapemedia/main/release/ChapeMedia-v1.0.2-win64.zip",
-    "size":  57274608,
-    "sha256":  "51A690CD1A7F3A58D44262950EB313CEEAF4A3325115D9729C564F36CFE1A0DD",
+    "size":  57273952,
+    "sha256":  "D37DC8F360DB35D3242992E70C30A15E0A08D6F196D114E2B5FEF592D0392648",
     "min_version":  "1.0.2",
     "mandatory":  false,
-    "notes":  "Optimisation memoire et stabilite (fond anime au ralenti quand la fenetre est inactive, arret complet quand elle est masquee) ; correction des noms de fichiers trop longs pour Windows ; messages de mise a jour explicites."
+    "notes":  "Optimisation memoire et stabilite ; correction des noms de fichiers trop longs pour Windows ; messages de mise a jour explicites. Auteur : Dane hk Manifest (remplace MANYFEST)."
 }

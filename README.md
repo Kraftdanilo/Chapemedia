@@ -86,6 +86,8 @@ Si le remplacement échoue, l'ancienne version est automatiquement remise en pla
 
 Licence **libre d'utilisation** : vous pouvez utiliser l'application librement, gratuitement et sans limitation.
 
+**Auteur** : **Dane hk \Manifest**
+
 Cette licence **n'autorise pas la copie, la modification, la redistribution ou la revente** du projet, ni la réutilisation de son code sous quelque forme que ce soit. Voir [`LICENSE`](LICENSE).
 
 **Windows uniquement.** Aucune version macOS, Linux, iOS ou Android n'est prévue.
@@ -100,7 +102,7 @@ L'application n'est affiliated à aucun service de streaming ni à aucune platef
 
 ## 📨 Problèmes
 
-Toute question ou tout signalement : **battiment64@gmail.com**
+Toute question ou tout signalement : via les [issues du dépôt](https://github.com/Kraftdanilo/Chapemedia/issues).
 
 ---
 

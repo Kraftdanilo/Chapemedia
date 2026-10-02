@@ -124,7 +124,7 @@ Tout est stocké **localement**, dans `%USERPROFILE%\.chape_media` :
 
 ## 7. Mentions légales et mise à jour
 
-Bouton **© MANYFEST** (en bas à droite) : version installée, licence,
+Bouton **© Dane hk \Manifest** (en bas à droite) : version installée, licence,
 et **🔄 Vérifier les mises à jour** → voir la
 [fiche de dépannage](FICHE-DEPANNAGE.md) § 2.
 

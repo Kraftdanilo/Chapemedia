@@ -60,7 +60,7 @@ vous **informe** seulement : rien ne s'installe jamais sans votre accord.
 
 ### Méthode automatique (recommandée)
 
-1. Bouton **© MANYFEST** (en bas à droite).
+1. Bouton **© Dane hk \Manifest** (en bas à droite).
 2. **🔄 Vérifier les mises à jour**.
 3. Si une version plus récente existe : **⬇️ Installer la mise à jour**
    (cliquez dessus — deux clics si la première passe inaperçue).
@@ -114,7 +114,7 @@ dossier de destination (« Médias »), même après une réinitialisation.
 **E-mail : battiment64@gmail.com**
 
 En cas de signalement, joignez si possible :
-1. la version (`© MANYFEST` → Version) ;
+1. la version (`© Dane hk \Manifest` → Version) ;
 2. les lignes du **📋 JOURNAL** concernées ;
 3. le message exact (copié-collé) et les étapes pour reproduire.
 
