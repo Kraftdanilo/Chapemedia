@@ -111,7 +111,7 @@ dossier de destination (« Médias »), même après une réinitialisation.
 
 ## 4. Signaler un problème
 
-**E-mail : battiment64@gmail.com**
+Via les [issues du dépôt](https://github.com/Kraftdanilo/Chapemedia/issues) (même contact que dans le README et la licence).
 
 En cas de signalement, joignez si possible :
 1. la version (`© Dane hk \Manifest` → Version) ;

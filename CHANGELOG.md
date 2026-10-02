@@ -10,5 +10,5 @@
 
 ## v1.0.2 - 2026-10-02
 
-- Optimisation memoire et stabilite ; correction des noms de fichiers trop longs pour Windows ; messages de mise a jour explicites. Auteur : Dane hk Manifest (remplace MANYFEST).
+- Optimisation memoire et stabilite ; correction des noms de fichiers trop longs pour Windows ; messages de mise a jour explicites. Auteur : Dane hk \Manifest.
 
