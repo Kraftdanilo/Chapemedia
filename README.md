@@ -12,7 +12,7 @@ Interface locale, rapide et légère. Aucun compte, aucun abonnement, aucune don
 
 | Fichier | Description |
 |---|---|
-| [`ChapeMedia-v1.0.2-win64.zip`](https://github.com/Kraftdanilo/Chapemedia/releases) | Paquet prêt à l'emploi |
+| [`ChapeMedia-v1.0.2-win64.zip`](https://github.com/Kraftdanilo/Chapemedia/raw/main/release/ChapeMedia-v1.0.2-win64.zip) | Paquet prêt à l'emploi |
 
 1. Téléchargez l'archive.
 2. **Extrayez-la** où vous voulez (ne lancez pas l'application depuis l'archive).
@@ -27,6 +27,18 @@ Interface locale, rapide et légère. Aucun compte, aucun abonnement, aucune don
 - **Microsoft Edge WebView2 Runtime** — déjà présent sur un Windows à jour. Sinon : https://developer.microsoft.com/microsoft-edge/webview2/
 - Une connexion Internet (pour chercher et télécharger)
 - Rien d'autre à installer : **Python n'est pas nécessaire**, tous les composants sont inclus.
+
+---
+
+## 📚 Documentation
+
+| Fiche | Contenu |
+|---|---|
+| [`docs/FICHE-INSTALLATION.md`](docs/FICHE-INSTALLATION.md) | Configuration requise, téléchargement, extraction, première mise en route, désinstallation |
+| [`docs/FICHE-UTILISATION.md`](docs/FICHE-UTILISATION.md) | Interface, téléchargement vidéo/audio, lecteur, bibliothèque, raccourcis, données |
+| [`docs/FICHE-DEPANNAGE.md`](docs/FICHE-DEPANNAGE.md) | Messages d'erreur, mise à jour, réinitialisation, contact |
+
+Sommaire : [`docs/README.md`](docs/README.md)
 
 ---
 

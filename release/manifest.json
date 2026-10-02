@@ -4,7 +4,7 @@
     "channel":  "stable",
     "date":  "2026-10-01",
     "package":  "ChapeMedia-v1.0.2-win64.zip",
-    "url":  "https://github.com/Kraftdanilo/Chapemedia/releases/download/v1.0.2/ChapeMedia-v1.0.2-win64.zip",
+    "url":  "https://raw.githubusercontent.com/Kraftdanilo/Chapemedia/main/release/ChapeMedia-v1.0.2-win64.zip",
     "size":  57274608,
     "sha256":  "51A690CD1A7F3A58D44262950EB313CEEAF4A3325115D9729C564F36CFE1A0DD",
     "min_version":  "1.0.2",

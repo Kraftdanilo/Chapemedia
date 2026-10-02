@@ -21,8 +21,18 @@
 !README.md
 !LICENSE
 !CHANGELOG.md
+
+# Documentation (fiches d'utilisation)
+!docs/
+!docs/*.md
+
+# Manifeste de mise a jour (lu par l'application au demarrage)
 !release/
 !release/manifest.json
+
+# Paquet Windows empaquete (seule archive publiee : la version courante,
+# les anciennes versions restent dans release\\archive/ et ne sont pas versionnees)
+!release/*.zip
 
 # ---- Locaux (rien de tout ca n'a vocation a etre publie) ----
 .venv/
