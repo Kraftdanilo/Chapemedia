@@ -1,0 +1,13 @@
+{
+    "app":  "CHAPE-MEDIA",
+    "version":  "1.0.4",
+    "channel":  "stable",
+    "date":  "2026-10-16",
+    "package":  "ChapeMedia-v1.0.4-win64.zip",
+    "url":  "",
+    "size":  74052689,
+    "sha256":  "7F0901A2A8015788FC83E4EA6539DA91E4687C63B2EBF8E3528A36F17AF3F6C9",
+    "min_version":  "1.0.4",
+    "mandatory":  false,
+    "notes":  "v1.0.4 remix : UI remix (topbar sticky, cartes flex, lecteur borne, responsive), boucle persistante window.DNA_LOOP, correctif boucle app4, badge v1.0.4 remix"
+}
