@@ -1,5 +1,15 @@
 ﻿# Journal des versions - CHAPE-MEDIA
 
+## v1.0.5 remix - 2026-10-19
+
+- **Securite (correctif majeur)** : le serveur de medias ecoute sur 0.0.0.0 (partage reseau) mais servait n'importe quel fichier du disque via `/media?path=`, `/share?path=` et `/poster?path=`. Ces trois points d'entree sont desormais limites a `APP_DATA/thumbs` et au dossier de telechargement (sous-dossiers compris, liens et `..` resolus). La base `chape_media.db` n'est plus accessible.
+- `/poster` accepte encore une video choisie hors mediatheque : son dossier est autorise en lecture seule (`Api.poster_url`, nouvelle methode REST).
+- Code retour : 404 pour un fichier absent, 403 hors des dossiers autorises (le comportement d'un chemin legitime ne change pas).
+- Version : `APP_VERSION` passe a 1.0.5 ; `server.py` lit desormais la version depuis `core/config.py` au lieu de la coder en dur.
+- Documentation : ports corriges (API 8928, streaming 8929, verrou d'instance 8907) dans la doc developpeur, la fiche d'installation et les scripts de test.
+- Tests : `smoke_player.py` declare ses racines autorisees ; `smoke_thumbs.py` obtient l'URL `/poster` via l'API. 73 verifications vertes, audit 38/38.
+
+
 ## v1.0.0 - 2026-09-29
 
 - Paquet Windows 64 bits (SHA-256 : 3E23E4A4C78A41147A203884EF39BF5CCDD842B6FEEB43B17F7D5D5877F72772)
@@ -25,5 +35,6 @@
 
 ## v1.0.4 - 2026-10-16
 
-- v1.0.4 remix : UI remix (topbar sticky, cartes flex, lecteur borne, responsive), boucle persistante window.DNA_LOOP, correctif boucle app4, badge v1.0.4 remix
-
+- Backend : pont pywebview remplacé par une API REST locale FastAPI (POST/GET /api/<nom>, port 8898) ; le front communique via bridge.js (proxy window.backend -> fetch HTTP, healthcheck + événement backendready).
+- Release publiée : ChapeMedia-v1.0.4-win64.zip (38 999 752 octets, SHA-256 5CA1D2207F87AD599DBB9E2B239247E48D08E96F3DC20C83E49039C75ED2D334).
+- Documentation réécrite à l'état actuel de l'application (README, fiches installation/utilisation/dépannage, doc développeur).
