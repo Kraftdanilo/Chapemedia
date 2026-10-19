@@ -1,8 +1,7 @@
 # 📥 Fiche d'installation — CHAPE-MEDIA v1.0.5
 
-Paquet Windows 64 bits (sources + dépendances) : aucun compte, aucun abonnement.
-Comptez 5 minutes la première fois (installation de Python et des bibliothèques),
-puis quelques secondes aux lancements suivants.
+Paquet Windows 64 bits (exécutable autonome) : aucun compte, aucun abonnement,
+aucune installation de Python. Comptez quelques secondes : extraire, double-cliquer.
 
 ---
 
@@ -13,8 +12,7 @@ puis quelques secondes aux lancements suivants.
 | Système | Windows 10 ou 11, **64 bits** |
 | WebView2 | Microsoft Edge WebView2 Runtime — déjà présent sur tout Windows à jour. Sinon : <https://developer.microsoft.com/microsoft-edge/webview2/> |
 | Internet | Obligatoire pour rechercher et télécharger les médias |
-| Python | **Python 3.11+ requis** (une seule installation : <https://www.python.org/downloads/>, cochez « Add python.exe to PATH ») |
-| Espace disque | ~300 Mo pour Python + les bibliothèques + l'espace nécessaire à vos téléchargements |
+| Espace disque | ~250 Mo pour l'application + l'espace nécessaire à vos téléchargements |
 
 ---
 
@@ -31,8 +29,8 @@ Fiche technique du paquet (source : [`release/manifest.json`](../release/manifes
 | Valeur | Contenu |
 |---|---|
 | Version | 1.0.5 remix (canal `stable`) |
-| Taille | 39011868 octets |
-| SHA-256 | `8459E69910395E7D3A8F91B9FF48DECB6C619CEA21CA0E9761EFDE104A91D9B7` |
+| Taille | 77397911 octets (~73,8 Mo) |
+| SHA-256 | `4876D4370CC9ABAEA9DCB9C20BB4E626FC92EFC1010793463DC22CEF74BAF298` |
 
 ### Vérifier l'intégrité (facultatif)
 
@@ -59,29 +57,29 @@ Contenu du paquet :
 
 ```
 ChapeMedia-v1.0.5-win64\
-├── lancer.bat           ← double-cliquez ici pour lancer
-├── app.py               ← application (Python)
-├── server.py            ← serveur FastAPI (API REST locale, port 8928)
-├── core\, web\          ← code + interface
-├── ffmpeg.exe           ← moteur de conversion (inclus)
-├── requirements.txt     ← bibliothèques installées au 1er lancement
+├── ChapeMedia.exe       ← double-cliquez ici pour lancer
+├── _internal\           ← moteur de l'application (ne pas déplacer ni renommer)
+│   ├── web\             ← interface
+│   └── ffmpeg.exe       ← moteur de conversion (inclus)
 ├── LISEZMOI.txt         ← mode d'emploi condensé
 ├── NOTICE.txt           ← licences des composants inclus
 └── LICENSE.txt          ← licence d'utilisation
 ```
 
+> Aucune installation de Python requise : l'application est un exécutable autonome.
+
 ---
 
 ## 4. Première mise en route
 
-1. Ouvrez le dossier extrait et double-cliquez sur **`lancer.bat`**.
-   Au premier lancement, il crée l'environnement Python et installe les
-   bibliothèques automatiquement (fenêtre noire quelques minutes : c'est normal).
+1. Ouvrez le dossier extrait et double-cliquez sur **`ChapeMedia.exe`**.
+   L'application démarre directement : aucune installation, aucun Python,
+   aucune bibliothèque à télécharger.
 2. La fenêtre s'ouvre et la barre d'état affiche **`PRÊT. 🌳`** : tout fonctionne.
 3. Collez un lien dans le champ et appuyez sur **Entrée** pour un premier essai.
 
 > Si rien ne s'affiche : voir la [fiche de dépannage](FICHE-DEPANNAGE.md)
-> (Python manquant ou WebView2 manquant).
+> (WebView2 manquant — Python n'est plus concerné).
 
 ---
 

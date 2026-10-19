@@ -45,10 +45,10 @@ dna/
 └── README.md               Présentation utilisateur du projet
 ```
 
-> Le dépôt ne contient **que** ce qui est publié (cf. `.gitignore`, liste blanche) :
-> code, docs, manifeste et paquet courant. Le lanceur `lancer.bat`, `LISEZMOI.txt` et
-> `NOTICE.txt` sont **embarqués dans le zip** par `scripts\make_release.ps1`
-> (dossier local `packaging/`, non versionné).
+> Le dépôt de distribution ne contient **que** ce qui est publié (cf. `.gitignore`,
+> liste blanche) : docs, manifeste et paquet courant. Le code source, les scripts
+> (`scripts/make_release.ps1`, `scripts/ChapeMedia.spec`) et `packaging/` vivent
+> dans le dépôt privé ; `LISEZMOI.txt` et `NOTICE.txt` sont **embarqués dans le zip**.
 
 ## 2. Environnement de développement
 
@@ -63,7 +63,9 @@ Dépendances (`app/requirements.txt`) : `yt-dlp`, `curl_cffi` (impersonation nav
 requis par l'extracteur TikTok), `pywebview`, `fastapi`, `uvicorn[standard]`, `pillow`,
 `gallery-dl` (moteur de secours TikTok/Facebook/Instagram).
 
-Aucun compilateur C ni PyInstaller : le backend est Python pur (FastAPI), l'app se lance en sources.
+Aucun compilateur C : le backend est Python pur (FastAPI) et l'app se lance en
+sources. La compilation (PyInstaller, mode onedir) est déclenchée par
+`make_release.ps1 -Build` (ou par le workflow `release.yml` dans la CI).
 
 ## 3. Lancer l'application
 
@@ -129,8 +131,12 @@ Mise à jour chez l'utilisateur
 3. Lancer :
 
    ```powershell
-   powershell -NoProfile -ExecutionPolicy Bypass -File scripts\make_release.ps1 -Notes "..."
+   powershell -NoProfile -ExecutionPolicy Bypass -File scripts\make_release.ps1 -Build -Notes "..."
    ```
+
+   Le workflow `.github/workflows/release.yml` fait la même chose dans la CI :
+   push de `app/core/config.py` (APP_VERSION) → tests + build → tag `vX.Y.Z` +
+   Release GitHub → manifest complété et paquet publiés sur `main`.
 
 4. Publier **le zip ET `release\manifest.json`** au même endroit (serveur,
    partage, clé USB). Les apps installées détectent la nouveauté en ≤ 24 h et

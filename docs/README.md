@@ -9,7 +9,7 @@ Fiches d'utilisation destinées à l'utilisateur final (paquet Windows 64 bits).
 | [Fiche de dépannage](FICHE-DEPANNAGE.md) | Messages d'erreur, mise à jour, réinitialisation, contact |
 | [Doc développeur](DEVELOPPEUR.md) | Architecture du code, lancement, release, tests |
 
-> Le paquet est **léger** (sources + dépendances) : Python 3.11+ doit être installé une seule fois sur la machine.
+> Le paquet est un **exécutable autonome** (aucune installation de Python requise).
 > Tout reste sur votre ordinateur : aucun compte, aucun serveur tiers.
 
 Sommaire rapide :

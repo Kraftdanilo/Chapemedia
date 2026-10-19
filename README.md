@@ -11,7 +11,7 @@ Interface locale, rapide et légère. Aucun compte, aucun abonnement, aucune don
 ### Windows 10 / 11 — 64 bits
 
 [`ChapeMedia-v1.0.5-win64.zip`](https://github.com/Kraftdanilo/Chapemedia/raw/main/release/ChapeMedia-v1.0.5-win64.zip)
-— 38,4 Mo, SHA-256 `8459E69910395E7D3A8F91B9FF48DECB6C619CEA21CA0E9761EFDE104A91D9B7`
+— 73,8 Mo, SHA-256 `4876D4370CC9ABAEA9DCB9C20BB4E626FC92EFC1010793463DC22CEF74BAF298`
 (vérifiable avec `Get-FileHash`).
 
 ### Version actuelle : v1.0.5 remix
@@ -27,7 +27,7 @@ multimédia de l'application (vignettes) sont servis. Mise à jour recommandée.
 
 1. Téléchargez l'archive.
 2. **Extrayez-la** où vous voulez (ne lancez pas l'application depuis l'archive).
-3. Ouvrez le dossier extrait et double-cliquez sur **`lancer.bat`**.
+3. Ouvrez le dossier extrait et double-cliquez sur **`ChapeMedia.exe`**.
 
 > **« Windows a protégé votre PC » ?**
 > L'application n'est pas signée avec un certificat payant. Cliquez sur *Plus d'informations* puis *Exécuter quand même*.
@@ -36,9 +36,10 @@ multimédia de l'application (vignettes) sont servis. Mise à jour recommandée.
 
 - Windows 10 ou 11 (64 bits)
 - **Microsoft Edge WebView2 Runtime** — déjà présent sur un Windows à jour. Sinon : [WebView2 Runtime](https://developer.microsoft.com/microsoft-edge/webview2/)
-- **Python 3.11+** (une seule installation : [python.org](https://www.python.org/downloads/), cochez « Add python.exe to PATH »)
 - Une connexion Internet (pour chercher et télécharger)
 - `ffmpeg.exe` est **inclus** dans le paquet (rien à installer)
+
+> Aucune installation de Python requise : l'application est livrée en exécutable autonome.
 
 ---
 
