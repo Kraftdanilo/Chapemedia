@@ -5,9 +5,9 @@
     "date":  "2026-10-19",
     "package":  "ChapeMedia-v1.0.5-win64.zip",
     "url":  "",
-    "size":  39011868,
-    "sha256":  "8459E69910395E7D3A8F91B9FF48DECB6C619CEA21CA0E9761EFDE104A91D9B7",
+    "size":  77397911,
+    "sha256":  "4876D4370CC9ABAEA9DCB9C20BB4E626FC92EFC1010793463DC22CEF74BAF298",
     "min_version":  "1.0.5",
     "mandatory":  false,
-    "notes":  "v1.0.5 remix : correctif de securite du serveur media (/media, /share et /poster limites au dossier de telechargement et aux donnees multimedia de l\u0027app)."
+    "notes":  "test-pyinstaller"
 }
