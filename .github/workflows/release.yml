@@ -1,0 +1,130 @@
+# ===========================================================================
+#  CHAPE-MEDIA - publication automatique d'une version (PyInstaller onedir)
+#
+#  Declenchement : push sur main qui touche app/core/config.py (APP_VERSION).
+#  Deroule :
+#      1. garde anti double-tag : si vX.Y.Z existe deja -> succes sans rien faire
+#      2. tests (audit + smokes) + build PyInstaller + smoke de l'exe compile
+#         (scripts/make_release.ps1 -Build : le zip et le manifest viennent
+#         de la MEME execution, ils ne peuvent pas diverger)
+#      3. tag vX.Y.Z + Release GitHub (zip en asset telechargeable)
+#      4. manifest.json complete (url -> asset de la Release) + zip + manifest
+#         commites sur main (ne reboucle pas : le declencheur ne regarde
+#         que app/core/config.py)
+#
+#  MAISON : ce workflow appartient au depot PRIVE (sources completes).
+#  Dans le depot public de distribution (sans app/), la garde "sources"
+#  l'arrete proprement : rien ne tourne, rien n'echoue.
+# ===========================================================================
+name: release
+
+on:
+  push:
+    branches: [main]
+    paths: ['app/core/config.py']
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+permissions:
+  contents: write   # tag + Release + commit du manifest/zip
+
+defaults:
+  run:
+    shell: pwsh
+
+jobs:
+  publish:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # ------------------------------------------------ garde : sources ?
+      - name: Detecter les sources
+        id: src
+        run: |
+          if (Test-Path app/core/config.py) { 'present=true' >> $env:GITHUB_OUTPUT }
+          else { 'present=false' >> $env:GITHUB_OUTPUT }
+
+      # ------------------------------------------------ version (source unique)
+      - name: Lire APP_VERSION
+        id: ver
+        if: steps.src.outputs.present == 'true'
+        run: |
+          $cfg = Get-Content app/core/config.py -Raw
+          if ($cfg -notmatch 'APP_VERSION\s*=\s*"([^"]+)"') { throw 'APP_VERSION introuvable' }
+          'version={0}' -f $Matches[1] >> $env:GITHUB_OUTPUT
+
+      # --------------------------------------- garde anti double-tag
+      - name: Tag deja publie ?
+        id: tag
+        if: steps.src.outputs.present == 'true'
+        run: |
+          $tag = 'v' + '${{ steps.ver.outputs.version }}'
+          $exists = git ls-remote --tags origin "refs/tags/$tag"
+          if ($exists) { 'exists=true' >> $env:GITHUB_OUTPUT }
+          else { 'exists=false' >> $env:GITHUB_OUTPUT }
+
+      - name: Installer Python 3.11
+        if: steps.tag.outputs.exists == 'false'
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+          cache-dependency-path: app/requirements.txt
+
+      - name: Installer les dependances + PyInstaller
+        if: steps.tag.outputs.exists == 'false'
+        run: |
+          python -m pip install -r app/requirements.txt
+          python -m pip install pyinstaller
+
+      # ffmpeg.exe (105 Mo) n'est pas versionne : on le recupere a chaque build.
+      - name: Recuperer ffmpeg
+        if: steps.tag.outputs.exists == 'false'
+        run: |
+          Invoke-WebRequest https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip -OutFile ffmpeg.zip
+          Expand-Archive ffmpeg.zip ffmpeg-dl
+          Copy-Item (Get-ChildItem ffmpeg-dl/*/bin/ffmpeg.exe).FullName app/ffmpeg.exe
+      # powershell.exe (5.1), pas pwsh : comportement identique au build local teste
+      # (ex. Set-Content UTF8 avec BOM, comme le manifest actuel).
+      - name: Tests + build + paquet + manifest
+        if: steps.tag.outputs.exists == 'false'
+        run: |
+          powershell -NoProfile -ExecutionPolicy Bypass -File scripts/make_release.ps1 -Build -AllowDirty
+          if ($LASTEXITCODE -ne 0) { throw 'make_release.ps1 a echoue' }
+
+      - name: Creer et pousser le tag
+        if: steps.tag.outputs.exists == 'false'
+        run: |
+          $tag = 'v' + '${{ steps.ver.outputs.version }}'
+          git tag $tag
+          git push origin $tag
+
+      - name: Creer la Release GitHub
+        if: steps.tag.outputs.exists == 'false'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $ver = '${{ steps.ver.outputs.version }}'
+          $zip = "release/ChapeMedia-v$ver-win64.zip"
+          $notes = (Get-Content release/manifest.json -Raw | ConvertFrom-Json).notes
+          gh release create "v$ver" --title "CHAPE-MEDIA v$ver" --notes $notes $zip
+
+      # L updater telecharge $url (vide -> relatif au manifest, qui ne contiendrait
+      # pas le zip) : on pointe l asset de la Release, puis on publie manifest + zip.
+      - name: Publier manifest + zip sur main
+        if: steps.tag.outputs.exists == 'false'
+        run: |
+          $ver = '${{ steps.ver.outputs.version }}'
+          $m = Get-Content release/manifest.json -Raw | ConvertFrom-Json
+          $m.url = 'https://github.com/${{ github.repository }}/releases/download/v{0}/{1}' -f $ver, $m.package
+          $m | ConvertTo-Json | Set-Content release/manifest.json -Encoding UTF8
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add release/manifest.json "release/ChapeMedia-v$ver-win64.zip"
+          git commit -m "v$ver : paquet + manifest"
+          git push origin main

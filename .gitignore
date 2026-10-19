@@ -34,6 +34,12 @@
 # les anciennes versions restent dans release\\archive/ et ne sont pas versionnees)
 !release/*.zip
 
+# Workflow de publication (recette versionnee, inerte ici : tourne dans le
+# depot prive qui contient les sources ; la garde "sources" l'arrete ici)
+!.github/
+!.github/workflows/
+!.github/workflows/*.yml
+
 # ---- Locaux (rien de tout ca n'a vocation a etre publie) ----
 .venv/
 __pycache__/
