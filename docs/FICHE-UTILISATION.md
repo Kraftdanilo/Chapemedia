@@ -1,4 +1,4 @@
-# 🎬 Fiche d'utilisation — CHAPE-MEDIA v1.0.3
+# 🎬 Fiche d'utilisation — CHAPE-MEDIA v1.0.5 remix
 
 Mode d'emploi de l'application : téléchargement, lecture, bibliothèque et
 raccourcis. Tout se passe dans **une seule fenêtre**, en deux zones :
@@ -10,7 +10,9 @@ raccourcis. Tout se passe dans **une seule fenêtre**, en deux zones :
 
 1. **Collez le lien** dans le champ `COLLE TON LIEN…`
    - 📋 = coller depuis le presse-papiers, 🔍 = prévisualiser (titre + vignette sans télécharger).
-   - Sites pris en charge par yt-dlp : YouTube, TikTok, Instagram, X…
+   - Sites pris en charge : YouTube, TikTok, Instagram, X… via yt-dlp.
+     En cas d'échec (site qui a changé, captcha…), l'application réessaie
+     automatiquement avec **Cobalt** puis **gallery-dl** — sans action de votre part.
 2. **Choisissez le type** :
    - 🎥 **VIDÉO** : format `MP4` / `MKV` / `WEBM` / `MOV`, qualité `BEST` (max), `4K`, `1440P`, `1080P`, `720P`, `480P`.
    - 🎵 **AUDIO** : format `MP3` / `M4A` / `OPUS` / `OGG` / `WAV` / `FLAC`, débit `128K`, `192K` (défaut), `256K` ou `320K`.
@@ -107,13 +109,14 @@ aux accents** (« cafe » trouve « Café »). Porte sur le titre, le format, et
 
 Tout est stocké **localement**, dans `%USERPROFILE%\.chape_media` :
 
-```
+```text
 %USERPROFILE%\.chape_media\
 ├── chape_media.db      ← historique, médiathèque, favoris, réglages, journal
 ├── backups\            ← sauvegardes automatiques (8 conservées)
 ├── cache\              ← cache d'analyse (accélère les recherches suivantes)
+├── thumbs\             ← vignettes des vidéos, téléchargées une fois puis servies en local
 ├── update\             ← paquets de mise à jour + journal update.log
-└── webview\            ← cache d'affichage
+└── webview\            ← cache d'affichage (démarrage plus rapide)
 ```
 
 - **Sauvegarder** = copier ce dossier (ou bouton 💾 SAUVEGARDE).

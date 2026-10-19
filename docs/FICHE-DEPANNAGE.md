@@ -1,4 +1,4 @@
-# 🛠 Fiche de dépannage — CHAPE-MEDIA v1.0.3
+# 🛠 Fiche de dépannage — CHAPE-MEDIA v1.0.5 remix
 
 Problèmes fréquents, messages d'erreur et procédures de mise à jour.
 Contact en fin de fiche.
@@ -16,7 +16,7 @@ Application non signée par un certificat commercial : *Plus d'informations* →
    <https://developer.microsoft.com/microsoft-edge/webview2/>
 2. Vérifiez que vous bien **extrait** le zip (ne jamais lancer depuis l'archive) et
    que le dossier n'est **pas** dans `C:\Program Files`.
-3. Démarrez `ChapeMedia.exe` une seconde fois : si rien ne bouge, redémarrez la
+3. Démarrez l'application une seconde fois : si rien ne bouge, redémarrez la
    machine (mémoire tampon WebView2 en mémoire).
 
 ### Un téléchargement échoue (badge ⚠ ERREUR)
@@ -39,7 +39,7 @@ Le fichier enregistré n'est plus sur le disque (déplacé, renommé, supprimé)
 - Filtre **🗑 MANQUANTS** pour les voir toutes ;
 - bouton **NETTOYER** pour retirer les entrées orphelines (favoris conservés).
 
-### Lentude / animation lourde
+### Lenteur / animation lourde
 - Fermez les onglets/autres applications ; le fond animé ralentit
   automatiquement quand la fenêtre est inactive ;
 - en cas de besoin, ajoutez `?eco=1` à l'URL pour couper les polices distantes.

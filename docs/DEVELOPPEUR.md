@@ -1,4 +1,4 @@
-# 🛠️ Documentation développeur — CHAPE-MEDIA v1.0.4
+# 🛠️ Documentation développeur — CHAPE-MEDIA v1.0.5
 
 Documentation technique du projet : architecture, lancement, release, tests.
 Pour les fiches utilisateur, voir [README.md](README.md) de ce dossier.
@@ -36,20 +36,19 @@ dna/
 │   │   ├── style.css       Feuille unique (base + composants + remix)
 │   │   └── icon.svg/.png/.ico  Icônes (régénérées par gen_icon.py)
 │   ├── gen_icon.py         Génère icon.ico/.png depuis icon.svg (nécessite pillow)
-│   ├── requirements.txt    Dépendances Python
-│   └── packaging/          LISEZMOI.txt et NOTICE.txt embarqués dans le zip
-├── scripts/                Scripts d'automatisation (PowerShell)
-│   ├── make_release.ps1    Zip sources + manifest.json + SHA-256 + CHANGELOG
-│   ├── smoke.ps1           Test de démarrage de l'app (sources)
-│   └── gen_version_file.py Propriétés Windows de l'exe (via APP_VERSION)
-├── tests/                  Self-tests (db, ui, update, front, audit...)
+│   ├── smoke_*.py          Simulations de bout en bout (lecteur, vignettes, profil)
+│   ├── audit_roles.py      Contrôle d'architecture (38 règles, 0 échec attendu)
+│   └── requirements.txt    Dépendances Python
 ├── docs/                   Fiches utilisateur (installation, usage, dépannage)
-├── release/                Sorties : zip + manifest.json (+ archive\ des anciennes)
-├── test_contract.py        Contrat REST : appelle /api/* et vérifie les formes
-├── playwright_smoke.py     Smoke UI navigateur (Playwright, front réel)
+├── release/                manifest.json + paquet Windows courant (seul publié)
 ├── CHANGELOG.md            Historique des versions
 └── README.md               Présentation utilisateur du projet
 ```
+
+> Le dépôt ne contient **que** ce qui est publié (cf. `.gitignore`, liste blanche) :
+> code, docs, manifeste et paquet courant. Le lanceur `lancer.bat`, `LISEZMOI.txt` et
+> `NOTICE.txt` sont **embarqués dans le zip** par `scripts\make_release.ps1`
+> (dossier local `packaging/`, non versionné).
 
 ## 2. Environnement de développement
 
@@ -145,8 +144,14 @@ Mise à jour chez l'utilisateur
 - **Verrou d'instance unique** : `app.py` bind le port TCP 8907 ; le cache
   WebView2 partagé (`%USERPROFILE%\.chape_media\webview`) n'est activé que si
   ce port est libre, sinon l'app repasse en mode privé temporaire.
-- **Ports** : 8898 = API REST FastAPI · 8899 = serveur de streaming (port
-  effectif stocké au boot dans le réglage `media_port`), port par défaut 8929.
+- **Ports** : 8928 = API REST FastAPI · 8929 = serveur de streaming (port
+  effectif stocké au boot dans le réglage `media_port`) · 8907 = verrou d'instance.
+- **Périmètre du serveur de streaming** : il écoute sur `0.0.0.0` (partage réseau),
+  mais `/media`, `/share` et `/poster` refusent tout fichier hors de deux racines :
+  `%USERPROFILE%\.chape_media\thumbs` et le dossier de téléchargement. Le filtrage
+  (`MediaServer.set_roots` / `is_allowed`) résout les liens et `..`, renvoie 404 pour
+  un fichier absent et 403 hors périmètre. `Api.poster_url()` ajoute en lecture seule
+  le dossier d'une vidéo locale choisie hors médiathèque.
 - **Encodage console** : `app.py` reconfigure `sys.stdout/stderr` en UTF-8
   (les titres TikTok/YouTube plantent sinon sous cp1252).
 - **`ffmpeg.exe`** : à la racine de `app/` ; `config.py` le localise via
@@ -155,20 +160,23 @@ Mise à jour chez l'utilisateur
     `app/build/`, `app/dist/`, `__pycache__/`, `.pytest_cache/`.
 - **Ne PAS supprimer** : `app.js` (bundle front unique) et `bridge.js` (pont
   FastAPI) — ils sont chargés par `index.html`.
-- **Ne jamais modifier** `release/` à la main : tout est régénéré par le build.
+- **Sortie de build** : `release/` peut être supprimé sans risque — il est
+  entièrement régénéré par `scripts\make_release.ps1`.
 
 ## 8. Tests
 
 ```powershell
-.venv\Scripts\Activate.ps1
-pytest tests\                              # tests unitaires
-python tests\db_selftest.py                # base SQLite + FTS5
-python tests\ui_selftest.py                # interface pywebview
-python tests\update_selftest.py            # mécanique de mise à jour
-python tests\front_selftest.js             # front (Node.js requis)
-python test_contract.py                    # contrat REST (app doit tourner sur 8928)
-python playwright_smoke.py                 # smoke UI (Playwright, front réel)
+.venv\Scripts\python.exe app\audit_roles.py        # 38 règles d'architecture
+.venv\Scripts\python.exe app\smoke_player.py       # streaming (Range, 416, MIME)
+.venv\Scripts\python.exe app\smoke_thumbs.py       # vignettes + Chromium
+.venv\Scripts\python.exe app\smoke_fixes.py        # correctifs régressifs
+.venv\Scripts\python.exe app\smoke_profile.py      # profils / avatars
+.venv\Scripts\python.exe test_contract.py          # contrat REST (app sur 8928)
+.venv\Scripts\python.exe playwright_smoke.py       # smoke UI (front réel)
 ```
+
+Aucun pytest, aucune intégration continue : ces scripts sont lancés à la main.
+`make_release.ps1 -Build` les exécute avant de zipper.
 
 ## 9. Dépannage build
 

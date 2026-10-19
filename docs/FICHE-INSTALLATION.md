@@ -1,4 +1,4 @@
-# 📥 Fiche d'installation — CHAPE-MEDIA v1.0.4
+# 📥 Fiche d'installation — CHAPE-MEDIA v1.0.5
 
 Paquet Windows 64 bits (sources + dépendances) : aucun compte, aucun abonnement.
 Comptez 5 minutes la première fois (installation de Python et des bibliothèques),
@@ -20,22 +20,26 @@ puis quelques secondes aux lancements suivants.
 
 ## 2. Télécharger le paquet
 
-Lien direct : **[ChapeMedia-v1.0.4-win64.zip](https://github.com/Kraftdanilo/Chapemedia/raw/main/release/ChapeMedia-v1.0.4-win64.zip)** (environ 39 Mo)
+Téléchargement direct (dépôt) :
+**[ChapeMedia-v1.0.5-win64.zip](https://github.com/Kraftdanilo/Chapemedia/raw/main/release/ChapeMedia-v1.0.5-win64.zip)**
 
-Fiche technique du paquet (aussi dans [`release/manifest.json`](../release/manifest.json)) :
+La 1.0.5 est la première version de départ de ce dépôt : les paquets antérieurs
+(1.0.0 à 1.0.4) ne sont plus distribués.
+
+Fiche technique du paquet (source : [`release/manifest.json`](../release/manifest.json)) :
 
 | Valeur | Contenu |
 |---|---|
-| Version | 1.0.4 remix (canal `stable`) |
-| Taille | 38 999 752 octets (~39 Mo) |
-| SHA-256 | `5CA1D2207F87AD599DBB9E2B239247E48D08E96F3DC20C83E49039C75ED2D334` |
+| Version | 1.0.5 remix (canal `stable`) |
+| Taille | 39011868 octets |
+| SHA-256 | `8459E69910395E7D3A8F91B9FF48DECB6C619CEA21CA0E9761EFDE104A91D9B7` |
 
 ### Vérifier l'intégrité (facultatif)
 
 Ouvrez PowerShell, placez-vous dans le dossier du zip puis tapez :
 
 ```powershell
-Get-FileHash .\ChapeMedia-v1.0.4-win64.zip -Algorithm SHA256
+Get-FileHash .\ChapeMedia-v1.0.5-win64.zip -Algorithm SHA256
 ```
 
 L'empreinte affichée doit être **identique** à celle du tableau ci-dessus. En cas
@@ -54,7 +58,7 @@ de différence, le fichier est corrompu ou altéré : téléchargez-le à nouvea
 Contenu du paquet :
 
 ```
-ChapeMedia-v1.0.4-win64\
+ChapeMedia-v1.0.5-win64\
 ├── lancer.bat           ← double-cliquez ici pour lancer
 ├── app.py               ← application (Python)
 ├── server.py            ← serveur FastAPI (API REST locale, port 8928)
@@ -94,7 +98,7 @@ Deux méthodes (détails dans la [fiche de dépannage](FICHE-DEPANNAGE.md) § 2)
 ## 6. Désinstaller
 
 1. Fermez l'application.
-2. Supprimez le dossier `ChapeMedia-v1.0.4-win64` (rien d'autre n'est installé).
+2. Supprimez le dossier `ChapeMedia-v1.0.5-win64` (rien d'autre n'est installé).
 3. Pour tout effacer, supprimez aussi vos données :
    `%USERPROFILE%\.chape_media`
    (historique, médiathèque, favoris, réglages, sauvegardes).
